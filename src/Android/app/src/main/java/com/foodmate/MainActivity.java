@@ -19,7 +19,10 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.parse.Parse;
-
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.ParseAnalytics;
+import com.parse.SignUpCallback;
 
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -49,6 +52,8 @@ public class MainActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+
     }
 
     @Override
