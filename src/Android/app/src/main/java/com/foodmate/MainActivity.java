@@ -68,10 +68,10 @@ public class MainActivity extends Activity
                 mTitle = getString(R.string.title_pantry);
                 break;
             case 4:
-                getString(R.string.title_wishlist);
+                mTitle = getString(R.string.title_wishlist);
                 break;
             case 5:
-                getString(R.string.title_shoppinglist);
+                mTitle = getString(R.string.title_shoppinglist);
                 break;
         }
     }
