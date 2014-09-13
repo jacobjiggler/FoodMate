@@ -12,7 +12,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var tableView: UITableView!
     var stringArray = ["foo", "bar", "baz"]
-    var foodData : NSArray = NSArray()
+    var foodData:[AnyObject]! = []
     override func viewDidLoad() {
         super.viewDidLoad()
         var query : PFQuery = PFQuery(className: "Food_item")
@@ -21,8 +21,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 NSLog("error " + error.localizedDescription)
             }
             else {
-                NSLog("objects %@", objects as NSArray)
-                self.foodData = NSArray(array:objects)
+//                NSLog("objects %@", objects as NSArray)
+//                self.foodData = NSArray(array:objects)
+                self.foodData = objects
+                
                 self.tableView.reloadData()
             }
         })
@@ -72,8 +74,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell = HomeTableViewCell()
         }
         
-        cell.foodLabel.text = foodData[indexPath.row].name
+        //cell.foodLabel.text = foodData[indexPath.row].name
         //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        
+        let objId = foodData[indexPath.row].objectId
+        var query = PFQuery(className:"Food_item")
+        query.getObjectInBackgroundWithId(objId) {
+            (item: PFObject!, error: NSError!) -> Void in
+            if error == nil {
+                //NSLog("%@", item)
+                cell.foodLabel.text = item["name"] as? String
+                //cell.priceLabel.text = item["price"] as? String
+                //cell.priceLabel.text = String(item["price"] as NSNumber / 100.0)
+            } else {
+                //NSLog("%@", error)
+            }
+        }
         
         return cell
     }
