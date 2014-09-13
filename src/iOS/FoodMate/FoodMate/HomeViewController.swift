@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var stringArray = ["foo", "bar", "baz"]
 
@@ -23,17 +23,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
-        return 6
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
-    {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as UICollectionViewCell
-        return cell
-    }
-    
 
     /*
     // MARK: - Navigation
@@ -45,6 +34,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     */
 
+
+    //////////////
+    // Table Stuff
+    //////////////
     func numberOfSectionsInTableView(tableView: UITableView) ->Int
     {
         return 1
@@ -69,4 +62,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return cell
     }
+    
+    /////////////////
+    // New Item Stuff
+    /////////////////
+    @IBAction func manualAddButtonClicked(sender: AnyObject) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil);
+        let vc = storyboard.instantiateViewControllerWithIdentifier("manualItemAdd") as UIViewController;
+        self.presentViewController(vc, animated: true, completion: nil);
+    }
+    
+    @IBAction func cameraAddButtonClicked(sender: UIBarButtonItem) {
+        print("bar")
+        print(sender)
+    }
+    
 }
