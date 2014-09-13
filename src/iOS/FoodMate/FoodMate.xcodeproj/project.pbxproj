@@ -16,6 +16,7 @@
 		1752C20319C416380058080E /* FoodMateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1752C20219C416380058080E /* FoodMateTests.swift */; };
 		17DFC57719C439A800C46F12 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFC57619C439A800C46F12 /* HomeViewController.swift */; };
 		17DFC57919C4494800C46F12 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFC57819C4494800C46F12 /* HomeTableViewCell.swift */; };
+		17DFC58319C4D3FB00C46F12 /* ManualItemAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFC58219C4D3FB00C46F12 /* ManualItemAddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		1752C20219C416380058080E /* FoodMateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMateTests.swift; sourceTree = "<group>"; };
 		17DFC57619C439A800C46F12 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		17DFC57819C4494800C46F12 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		17DFC58219C4D3FB00C46F12 /* ManualItemAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualItemAddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				1752C1EC19C416380058080E /* FirstViewController.swift */,
 				1752C1EE19C416380058080E /* SecondViewController.swift */,
 				1752C1F019C416380058080E /* Main.storyboard */,
+				17DFC58219C4D3FB00C46F12 /* ManualItemAddViewController.swift */,
 				17DFC57819C4494800C46F12 /* HomeTableViewCell.swift */,
 				17DFC57619C439A800C46F12 /* HomeViewController.swift */,
 				1752C1F319C416380058080E /* Images.xcassets */,
@@ -227,6 +230,7 @@
 				1752C1EB19C416380058080E /* AppDelegate.swift in Sources */,
 				1752C1ED19C416380058080E /* FirstViewController.swift in Sources */,
 				17DFC57719C439A800C46F12 /* HomeViewController.swift in Sources */,
+				17DFC58319C4D3FB00C46F12 /* ManualItemAddViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
