@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -16,51 +17,216 @@
                     <view key="view" contentMode="scaleToFill" id="5nX-Yb-OZo">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNr-7R-whU">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="sPj-jA-w2y"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.03011575478" green="1" blue="0.5015877245" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Shopping List" id="OBA-au-U2o">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="compose" id="hyU-Sl-cyf">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="camera" id="Ngy-7J-Dl7">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="sPj-jA-w2y"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="sPj-jA-w2y"/>
+                                    </mask>
+                                </variation>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VNr-7R-whU" firstAttribute="leading" secondItem="5nX-Yb-OZo" secondAttribute="leadingMargin" constant="-16" id="FmS-3u-XuH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VNr-7R-whU" secondAttribute="trailing" constant="-16" id="Lzx-AR-qCf"/>
+                            <constraint firstItem="VNr-7R-whU" firstAttribute="top" secondItem="5nX-Yb-OZo" secondAttribute="topMargin" id="cjh-2P-ruT"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="VNr-7R-whU"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="FmS-3u-XuH"/>
+                                <exclude reference="Lzx-AR-qCf"/>
+                                <exclude reference="cjh-2P-ruT"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="VNr-7R-whU"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="FmS-3u-XuH"/>
+                                <include reference="Lzx-AR-qCf"/>
+                                <include reference="cjh-2P-ruT"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Shopping List" image="second" id="08A-nh-ajK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o48-y1-3VQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="690" y="646"/>
-        </scene>
-        <!--New Items-->
-        <scene sceneID="fOL-US-jul">
-            <objects>
-                <viewController id="D2l-md-20N" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="71a-tQ-2gt"/>
-                        <viewControllerLayoutGuide type="bottom" id="Qr5-Kw-BhV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="jr3-ds-vX9">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="New Items" image="first" id="oCe-e9-K0h"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="noa-vW-rKc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1530" y="650"/>
+            <point key="canvasLocation" x="686" y="636.75"/>
         </scene>
         <!--My List-->
-        <scene sceneID="7CQ-wc-q7K">
+        <scene sceneID="yPD-fY-YtW">
             <objects>
-                <viewController id="D1c-Cr-M6y" sceneMemberID="viewController">
+                <viewController id="gHa-iG-7Yb" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3mt-Ux-haf"/>
-                        <viewControllerLayoutGuide type="bottom" id="vxa-r2-gbF"/>
+                        <viewControllerLayoutGuide type="top" id="40z-ev-8Bz"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nrs-P0-eTg"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Euq-UT-lch">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="Rkg-7X-ab6">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkM-2c-16L">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="mWR-i7-kye"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.03011575478" green="1" blue="0.5015877245" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="My List" id="py9-Um-UDY">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="compose" id="4W7-2C-k0h">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="camera" id="WvG-ED-HgB">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="mWR-i7-kye"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="mWR-i7-kye"/>
+                                    </mask>
+                                </variation>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dkM-2c-16L" firstAttribute="leading" secondItem="Rkg-7X-ab6" secondAttribute="leadingMargin" constant="-16" id="NAh-Fj-qgC"/>
+                            <constraint firstItem="dkM-2c-16L" firstAttribute="top" secondItem="Rkg-7X-ab6" secondAttribute="topMargin" id="oLT-5z-TFL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dkM-2c-16L" secondAttribute="trailing" constant="-16" id="td5-W3-em8"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="dkM-2c-16L"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="NAh-Fj-qgC"/>
+                                <exclude reference="oLT-5z-TFL"/>
+                                <exclude reference="td5-W3-em8"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="dkM-2c-16L"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="NAh-Fj-qgC"/>
+                                <include reference="oLT-5z-TFL"/>
+                                <include reference="td5-W3-em8"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My List" image="second" id="hHR-Mi-zNt"/>
+                    <tabBarItem key="tabBarItem" title="My List" image="second" id="J0L-Xg-Yyd"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wTP-5A-SBu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aaA-HY-OoY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2214" y="630"/>
+            <point key="canvasLocation" x="1387" y="636.75"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="8p9-fe-0Lw">
+            <objects>
+                <viewController id="VPU-Gq-koI" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="86u-BO-h37"/>
+                        <viewControllerLayoutGuide type="bottom" id="br1-qA-WGF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zkt-j9-eDC">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lsr-bS-AFH">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="w4k-pn-zl2"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.03011575478" green="1" blue="0.5015877245" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Settings" id="c4s-9m-hTb"/>
+                                </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="w4k-pn-zl2"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="w4k-pn-zl2"/>
+                                    </mask>
+                                </variation>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lsr-bS-AFH" firstAttribute="top" secondItem="zkt-j9-eDC" secondAttribute="topMargin" id="TFi-Ei-Ort"/>
+                            <constraint firstItem="lsr-bS-AFH" firstAttribute="leading" secondItem="zkt-j9-eDC" secondAttribute="leadingMargin" constant="-16" id="UHE-Pv-dSZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lsr-bS-AFH" secondAttribute="trailing" constant="-16" id="aza-X3-OhH"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="lsr-bS-AFH"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="TFi-Ei-Ort"/>
+                                <exclude reference="UHE-Pv-dSZ"/>
+                                <exclude reference="aza-X3-OhH"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="lsr-bS-AFH"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="TFi-Ei-Ort"/>
+                                <include reference="UHE-Pv-dSZ"/>
+                                <include reference="aza-X3-OhH"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="first" id="e2r-hW-XyF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vGX-I1-UhK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2021" y="636.75"/>
         </scene>
         <!--Home-->
         <scene sceneID="rf0-oq-ky6">
@@ -86,14 +252,11 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Home" id="tvz-H8-kR9">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="JtB-3b-Mzn">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ce3-9X-rIn">
-                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="first">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="compose" id="zfS-Od-6dq">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="camera" id="JtB-3b-Mzn">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -179,13 +342,13 @@
                                 <exclude reference="jOE-Md-ECp"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="e7m-pm-lKe"/>
                                 <exclude reference="2ux-Mp-5tS"/>
                                 <exclude reference="S71-3E-ZEr"/>
                                 <exclude reference="TaF-OA-UcG"/>
                                 <exclude reference="9jh-lm-09w"/>
                                 <exclude reference="A4h-xa-xJy"/>
                                 <exclude reference="PhR-Sz-wQu"/>
-                                <exclude reference="e7m-pm-lKe"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -194,13 +357,13 @@
                                 <include reference="jOE-Md-ECp"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="e7m-pm-lKe"/>
                                 <include reference="2ux-Mp-5tS"/>
                                 <include reference="S71-3E-ZEr"/>
                                 <include reference="TaF-OA-UcG"/>
                                 <include reference="9jh-lm-09w"/>
                                 <include reference="A4h-xa-xJy"/>
                                 <include reference="PhR-Sz-wQu"/>
-                                <include reference="e7m-pm-lKe"/>
                             </mask>
                         </variation>
                     </view>
@@ -208,7 +371,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mMv-Ev-yCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-48" y="629.625"/>
+            <point key="canvasLocation" x="-191" y="618.75"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -223,8 +386,8 @@
                     <connections>
                         <segue destination="g8J-f2-zhJ" kind="relationship" relationship="viewControllers" id="QYT-5h-l4e"/>
                         <segue destination="wwE-9F-VZU" kind="relationship" relationship="viewControllers" id="7zX-Zy-JGk"/>
-                        <segue destination="D2l-md-20N" kind="relationship" relationship="viewControllers" id="YDe-9F-atv"/>
-                        <segue destination="D1c-Cr-M6y" kind="relationship" relationship="viewControllers" id="LQJ-0q-S4F"/>
+                        <segue destination="gHa-iG-7Yb" kind="relationship" relationship="viewControllers" id="tyq-Cz-sdr"/>
+                        <segue destination="VPU-Gq-koI" kind="relationship" relationship="viewControllers" id="PMH-gV-NuG"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
