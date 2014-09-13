@@ -10,12 +10,25 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var tableView: UITableView!
     var stringArray = ["foo", "bar", "baz"]
-
+    var foodData : NSArray = NSArray()
     override func viewDidLoad() {
         super.viewDidLoad()
+        var query : PFQuery = PFQuery(className: "Food_item")
+        query.findObjectsInBackgroundWithBlock({(objects:[AnyObject]!, NSError error) in
+            if (error != nil) {
+                NSLog("error " + error.localizedDescription)
+            }
+            else {
+                NSLog("objects %@", objects as NSArray)
+                self.foodData = NSArray(array:objects)
+                self.tableView.reloadData()
+            }
+        })
 
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,7 +59,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) ->Int
     {
         //make sure you use the relevant array sizes
-        return stringArray.count
+        print("count is: \(foodData.count)")
+        return foodData.count
+
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -57,11 +72,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell = HomeTableViewCell()
         }
         
-        cell.foodLabel.text = stringArray[indexPath.row]
+        cell.foodLabel.text = foodData[indexPath.row].name
         //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         return cell
     }
+    
+    
     
     /////////////////
     // New Item Stuff

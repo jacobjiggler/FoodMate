@@ -181,6 +181,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="first" id="bFn-hQ-D3k"/>
+                    <connections>
+                        <outlet property="tableView" destination="jOE-Md-ECp" id="B0m-A9-gzc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mMv-Ev-yCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
