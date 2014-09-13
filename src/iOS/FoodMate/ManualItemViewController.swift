@@ -1,5 +1,5 @@
 //
-//  ManualItemAddViewController.swift
+//  ManualItemViewController.swift
 //  FoodMate
 //
 //  Created by Jordan Horwich on 9/13/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ManualItemAddViewController: UIViewController {
+class ManualItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,16 @@ class ManualItemAddViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func test(sender: AnyObject) {
-        sender.resignFirstResponder()
+
+    /////////////////////
+    // Button Bar Actions
+    /////////////////////
+    
+    @IBAction func cancelButtonClicked(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func doneButtonClicked(sender: AnyObject) {
+        // send Parse requests here and then reload the table
     }
 }

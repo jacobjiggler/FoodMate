@@ -68,13 +68,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     /////////////////
     @IBAction func manualAddButtonClicked(sender: AnyObject) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil);
-        let vc = storyboard.instantiateViewControllerWithIdentifier("manualItemAdd") as UIViewController;
+        let vc = storyboard.instantiateViewControllerWithIdentifier("manualItem") as ManualItemViewController;
         self.presentViewController(vc, animated: true, completion: nil);
     }
     
     @IBAction func cameraAddButtonClicked(sender: UIBarButtonItem) {
-        print("bar")
-        print(sender)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil);
+        let vc = storyboard.instantiateViewControllerWithIdentifier("scanItem") as ScanItemViewController;
+        self.presentViewController(vc, animated: true, completion: nil);
     }
     
 }
