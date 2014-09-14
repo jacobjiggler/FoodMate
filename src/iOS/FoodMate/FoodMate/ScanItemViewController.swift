@@ -70,7 +70,7 @@ class ScanItemViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             if detectionString != "" {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil);
                 let vc = storyboard.instantiateViewControllerWithIdentifier("manualItem") as ManualItemViewController
-                vc.setBarcode(detectionString)
+                vc.initwithBarcode(detectionString)
                 self.presentViewController(vc, animated: true, completion: nil)
                 _session.stopRunning()
                 break

@@ -12,6 +12,7 @@
 		1752C1F419C416380058080E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1752C1F319C416380058080E /* Images.xcassets */; };
 		1752C1F719C416380058080E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1752C1F519C416380058080E /* LaunchScreen.xib */; };
 		1752C20319C416380058080E /* FoodMateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1752C20219C416380058080E /* FoodMateTests.swift */; };
+		175B18C219C5B55700C3B6BB /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175B18C119C5B55700C3B6BB /* MainTabBarViewController.swift */; };
 		17DFC57719C439A800C46F12 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFC57619C439A800C46F12 /* HomeViewController.swift */; };
 		17DFC57919C4494800C46F12 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFC57819C4494800C46F12 /* HomeTableViewCell.swift */; };
 		17DFC58519C4DFBE00C46F12 /* ManualItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFC58419C4DFBE00C46F12 /* ManualItemViewController.swift */; };
@@ -52,6 +53,7 @@
 		1752C1FC19C416380058080E /* FoodMateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodMateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1752C20119C416380058080E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1752C20219C416380058080E /* FoodMateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMateTests.swift; sourceTree = "<group>"; };
+		175B18C119C5B55700C3B6BB /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		17DFC57619C439A800C46F12 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		17DFC57819C4494800C46F12 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		17DFC58419C4DFBE00C46F12 /* ManualItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManualItemViewController.swift; path = ../ManualItemViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		1752C1E719C416380058080E /* FoodMate */ = {
 			isa = PBXGroup;
 			children = (
+				175B18C119C5B55700C3B6BB /* MainTabBarViewController.swift */,
 				17DFC58419C4DFBE00C46F12 /* ManualItemViewController.swift */,
 				17DFC58619C4E0C800C46F12 /* ScanItemViewController.swift */,
 				1752C1EA19C416380058080E /* AppDelegate.swift */,
@@ -226,7 +229,7 @@
 				TargetAttributes = {
 					1752C1E419C416380058080E = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 2S3D8J8M3T;
+						DevelopmentTeam = K3Y68R56RX;
 					};
 					1752C1FB19C416380058080E = {
 						CreatedOnToolsVersion = 6.0;
@@ -280,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17DFC57919C4494800C46F12 /* HomeTableViewCell.swift in Sources */,
+				175B18C219C5B55700C3B6BB /* MainTabBarViewController.swift in Sources */,
 				17DFC58519C4DFBE00C46F12 /* ManualItemViewController.swift in Sources */,
 				7075C69419C59EE10039F68F /* ShoppingListViewController.swift in Sources */,
 				7075C69619C5A2960039F68F /* ShoppingListTableViewCell.swift in Sources */,
