@@ -1,0 +1,160 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.foodmate.FoodItemDetailFragment"
+    android:gravity="fill"
+    android:showDividers="beginning|middle|end"
+    android:rowCount="8"
+    android:columnCount="2">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/food_detail_title"
+        android:layout_row="0"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_column="0"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp" />
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="0">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:baselineAligned="false">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/food_detail_price"
+                android:layout_column="0"
+                android:linksClickable="false"
+                android:longClickable="false"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/food_detail_price"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/food_detail_last_purchased"
+                android:layout_column="0"
+                android:linksClickable="false"
+                android:longClickable="false"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/food_detail_last_purchased"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/food_detail_expiration_date"
+                android:layout_column="0"
+                android:linksClickable="false"
+                android:longClickable="false"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/food_detail_expiration_date"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/food_detail_barcode"
+                android:layout_column="0"
+                android:linksClickable="false"
+                android:longClickable="false"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/food_detail_barcode"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/food_detail_edit"
+        android:id="@+id/food_detail_edit_button"
+        android:layout_column="0"
+        android:layout_row="6" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/food_detail_add"
+        android:id="@+id/food_detail_wishlist_button"
+        android:layout_column="0"
+        android:layout_gravity="center_horizontal"
+        android:layout_row="7" />
+
+</GridLayout>

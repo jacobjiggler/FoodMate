@@ -13,5 +13,11 @@
     <string name="action_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="signup_header">Signup For FoodMate!</string>
-
+    <string name="food_detail_edit">Edit Price</string>
+    <string name="food_detail_add">Add to Wishlist</string>
+    <string name="food_detail_remove">Remove from Wishlist</string>
+    <string name="food_detail_price">Price</string>
+    <string name="food_detail_last_purchased">Last Purchased</string>
+    <string name="food_detail_expiration_date">Expiration Date</string>
+    <string name="food_detail_barcode">Barcode Data</string>
 </resources>

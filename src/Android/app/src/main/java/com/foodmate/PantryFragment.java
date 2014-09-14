@@ -5,12 +5,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -24,7 +28,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link PantryFragment.OnFragmentInteractionListener} interface
+ * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link PantryFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -78,39 +82,77 @@ public class PantryFragment extends Fragment {
 
         final ListView lv = (ListView)inflater.inflate(R.layout.fragment_pantry, container, false);
 
-        ParseObject userGroup = null;
         ParseQuery<ParseObject> groupQuery = ParseQuery.getQuery("Group");
         groupQuery.whereEqualTo("objectId", "T0WP5gBwTF");
 
-        try {
-            List<ParseObject> objs = groupQuery.find();
-            if (objs.size() > 0)
-                userGroup = objs.get(0);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Food_item");
-        query.whereEqualTo("groupId", userGroup);
-        query.findInBackground(new FindCallback<ParseObject>() {
+        groupQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> parseObjects, ParseException e) {
                 if (e != null)
                     Log.d("FoodMate", "ERROR" + e.getMessage());
-                else {
-                    List<FoodItemWrapper> convertedList = new ArrayList<FoodItemWrapper>();
-                    for (int i = 0; i < parseObjects.size(); i++) {
-                        convertedList.add(new FoodItemWrapper(parseObjects.get(i)));
-                    }
 
-                    ArrayAdapter<FoodItemWrapper> arrayAdapter = new ArrayAdapter<FoodItemWrapper>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, convertedList);
-                    lv.setAdapter(arrayAdapter);
-                }
+                ParseObject userGroup = null;
+
+                if (parseObjects.size() > 0)
+                    userGroup = parseObjects.get(0);
+                else
+                    return;
+
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("Food_item");
+                query.whereEqualTo("groupId", userGroup);
+                query.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(List<ParseObject> parseObjects, ParseException e) {
+                        if (e != null)
+                            Log.d("FoodMate", "ERROR" + e.getMessage());
+                        else {
+                            List<FoodItemWrapper> convertedList = new ArrayList<FoodItemWrapper>();
+                            for (int i = 0; i < parseObjects.size(); i++) {
+                                convertedList.add(new FoodItemWrapper(parseObjects.get(i)));
+                            }
+
+                            ArrayAdapter<FoodItemWrapper> arrayAdapter = new ArrayAdapter<FoodItemWrapper>(lv.getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, convertedList);
+                            lv.setAdapter(arrayAdapter);
+                        }
+                    }
+                });
+            }
+        });
+
+        registerForContextMenu(lv);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                FoodItemWrapper item = (FoodItemWrapper)parent.getItemAtPosition(position);
+                FoodItemDetailFragment detailFragment = new FoodItemDetailFragment(item);
+                getFragmentManager().beginTransaction().replace(R.id.container, detailFragment).commit();
+                //view.showContextMenu();
+                /*ListView clv = new ListView();*/
             }
         });
 
         return lv;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("Action");
+        menu.add(0, v.getId(), 0, "Add to Wishlilst");
+        menu.add(0, v.getId(), 1, "Cancel");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getOrder() == 0) {
+            Toast.makeText(this.getActivity(), "ADDING", Toast.LENGTH_LONG).show();
+        }
+        else if (item.getOrder() == 1) {
+
+        }
+
+        return false;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -136,20 +178,4 @@ public class PantryFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
-    }
-
 }

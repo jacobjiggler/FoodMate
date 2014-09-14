@@ -6,6 +6,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ import com.parse.ParseAnalytics;
 import com.parse.SignUpCallback;
 
 public class MainActivity extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, PantryFragment.OnFragmentInteractionListener {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -44,6 +45,13 @@ public class MainActivity extends Activity
         setContentView(R.layout.activity_main);
 
         Parse.initialize(this, ApiKeys.PARSE_APP_ID, ApiKeys.PARSE_CLIENT_KEY);
+
+        SharedPreferences prefs = getSharedPreferences("user", 0);
+        if (!prefs.contains("userId")) {
+
+        }
+
+
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
