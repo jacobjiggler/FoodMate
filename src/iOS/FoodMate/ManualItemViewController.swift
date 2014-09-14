@@ -17,8 +17,8 @@ class ManualItemViewController: UIViewController {
     
     @IBOutlet weak var daysToExpireTextField: UITextField!
     
-    var barcode: String = ""
-    var name: String = ""
+    var itemBarcode: String = ""
+    var itemName: String = ""
     
     
     var parentView:UIViewController!
@@ -30,9 +30,9 @@ class ManualItemViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        barCodeTextField.text = barcode
+        barCodeTextField.text = itemBarcode
         var query : PFQuery = PFQuery(className: "Food_item")
-        query.whereKey("barcode", equalTo: barcode)
+        query.whereKey("barcode", equalTo: itemBarcode)
         query.findObjectsInBackgroundWithBlock({(objects:[AnyObject]!, NSError error) in
             if (error != nil) {
                 NSLog("error " + error.localizedDescription)
@@ -61,12 +61,8 @@ class ManualItemViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func initme(newParentView: UIViewController) {
-        parentView = newParentView
-    }
-    
-    func setBarcode(newBarcode: String) {
-        barcode = newBarcode
+    func initwithBarcode(barcode: String) {
+        itemBarcode = barcode
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -127,20 +123,24 @@ class ManualItemViewController: UIViewController {
     }
     
     @IBAction func addButtonClicked(sender: AnyObject) {
+        var codedObjId = PFQuery(className: "Group").getFirstObject()
+        
         var query = PFQuery(className: "Food_item")
         query.whereKey("name", equalTo: itemNameTextField.text)
         var item = query.getFirstObject()
+
         if item == nil {
             var newItem = PFObject(className: "Food_item")
             newItem["name"] = self.itemNameTextField.text
             newItem["price"] = (self.itemPriceTextField.text as NSString).floatValue
-            if (self.barCodeTextField.text != "") {
+            if !self.barCodeTextField.text.isEmpty {
                 newItem["barcode"] = self.barCodeTextField.text
             }
-            if (self.daysToExpireTextField.text != "") {
+            if !self.daysToExpireTextField.text.isEmpty {
                 newItem["expiration"] = self.daysToExpireTextField.text.toInt()
             }
             newItem["inStock"] = true
+            newItem["groupId"] = codedObjId
             newItem.saveInBackground()
         } else {
             item["price"] = (self.itemPriceTextField.text as NSString).floatValue
@@ -151,6 +151,7 @@ class ManualItemViewController: UIViewController {
                 item["expiration"] = self.daysToExpireTextField.text.toInt()
             }
             item["inStock"] = true
+            item["groupId"] = codedObjId
             item.saveInBackground()
         }
         self.dismissViewControllerAnimated(true, completion: nil)

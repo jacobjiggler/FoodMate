@@ -58,33 +58,6 @@ public class MainActivity extends Activity
             Intent intent = new Intent(this, SignupActivity.class);
             startActivity(intent);
         }
-        //WebView webview = (WebView)findViewById(R.id.webview);
-        //setContentView(webview);
-        //webview.loadUrl("http://slashdot.org/");
-
-
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Title here");
-
-        WebView wv = new WebView(this);
-        wv.loadUrl("https://api.venmo.com/v1/oauth/authorize?client_id=1965&scope=make_payments&response_type=token");
-        wv.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-
-                return true;
-            }
-        });
-
-        alert.setView(wv);
-        alert.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.dismiss();
-            }
-        });
-        alert.show();
 
 
 
