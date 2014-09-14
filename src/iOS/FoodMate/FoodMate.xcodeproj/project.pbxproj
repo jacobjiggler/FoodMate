@@ -30,6 +30,10 @@
 		701C9ABB19C4DDD900643676 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701C9ABA19C4DDD900643676 /* SystemConfiguration.framework */; };
 		7075C69419C59EE10039F68F /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7075C69319C59EE10039F68F /* ShoppingListViewController.swift */; };
 		7075C69619C5A2960039F68F /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7075C69519C5A2960039F68F /* ShoppingListTableViewCell.swift */; };
+		7075C69819C5AF530039F68F /* libTwilioClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7075C69719C5AF530039F68F /* libTwilioClient.a */; };
+		7075C69B19C5B1010039F68F /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7075C69919C5B1010039F68F /* libcrypto.a */; };
+		7075C69C19C5B1010039F68F /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7075C69A19C5B1010039F68F /* libssl.a */; };
+		7075C69E19C5B12A0039F68F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7075C69D19C5B12A0039F68F /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +75,10 @@
 		701C9ABC19C4DDF200643676 /* FoodMate-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoodMate-Bridging-Header.h"; sourceTree = "<group>"; };
 		7075C69319C59EE10039F68F /* ShoppingListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		7075C69519C5A2960039F68F /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
+		7075C69719C5AF530039F68F /* libTwilioClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTwilioClient.a; path = "../../../../Downloads/TwilioClient-1.1.5-ce0a13e/Libraries/libTwilioClient.a"; sourceTree = "<group>"; };
+		7075C69919C5B1010039F68F /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../../Downloads/TwilioClient-1.1.5-ce0a13e/Libraries/libcrypto.a"; sourceTree = "<group>"; };
+		7075C69A19C5B1010039F68F /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../../../Downloads/TwilioClient-1.1.5-ce0a13e/Libraries/libssl.a"; sourceTree = "<group>"; };
+		7075C69D19C5B12A0039F68F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7075C69E19C5B12A0039F68F /* AVFoundation.framework in Frameworks */,
+				7075C69B19C5B1010039F68F /* libcrypto.a in Frameworks */,
+				7075C69C19C5B1010039F68F /* libssl.a in Frameworks */,
+				7075C69819C5AF530039F68F /* libTwilioClient.a in Frameworks */,
 				701C9ABB19C4DDD900643676 /* SystemConfiguration.framework in Frameworks */,
 				701C9AB919C4DDCF00643676 /* StoreKit.framework in Frameworks */,
 				701C9AB719C4DDC900643676 /* Security.framework in Frameworks */,
@@ -106,6 +118,10 @@
 		1752C1DC19C416380058080E = {
 			isa = PBXGroup;
 			children = (
+				7075C69D19C5B12A0039F68F /* AVFoundation.framework */,
+				7075C69919C5B1010039F68F /* libcrypto.a */,
+				7075C69A19C5B1010039F68F /* libssl.a */,
+				7075C69719C5AF530039F68F /* libTwilioClient.a */,
 				701C9ABA19C4DDD900643676 /* SystemConfiguration.framework */,
 				701C9AB819C4DDCF00643676 /* StoreKit.framework */,
 				701C9AB619C4DDC900643676 /* Security.framework */,
@@ -418,6 +434,10 @@
 				INFOPLIST_FILE = FoodMate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/PennApps/Downloads/TwilioClient-1.1.5-ce0a13e/Libraries",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FoodMate-Bridging-Header.h";
@@ -439,6 +459,10 @@
 				INFOPLIST_FILE = FoodMate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/PennApps/Downloads/TwilioClient-1.1.5-ce0a13e/Libraries",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FoodMate-Bridging-Header.h";

@@ -91,34 +91,98 @@ class ShoppingListViewController: UIViewController {
         
         return cell
     }
+    class Person {
+        //name, phone #, food list
+        var name: String?
+        var phone: String?
+        var food_list: [Food] = []
+    }
     
+    class Food {
+        var name: String?
+        var price: Float?
+        var shared_by: Float?
+    }
+    
+    class Receipt
+    {
+        var all_lines:[String] = []
+        var recipient: String?
+        var total: Float = 0
+        func add_line(name: String, price: Float){
+            self.all_lines.append(name + " : $ " + "\(price)" + "\n")
+            self.total+=price
+        }
+    }
     
     @IBAction func CheckoutButtonClicked(sender: AnyObject) {
-        print("Checkout!")
-        var query : PFQuery = PFQuery(className: "User")
-      //  query.whereKey("inStock", equalTo: false)
-      //  query.whereKey(")
-        var all_users:[AnyObject]! = []
-        query.findObjectsInBackgroundWithBlock({(objects:[AnyObject]!, NSError error) in
-            if (error != nil) {
-                NSLog("error " + error.localizedDescription)
+        print("Checkout! \n")
+        var all_people: [Person] = []
+        
+        //hard coded data stuff, replace with database
+        var malk = Food()
+        malk.name = "malk"
+        malk.price = 2
+        var bred = Food()
+        bred.name = "bred"
+        bred.price = 4
+        var food_jl : [Food] = [malk, bred]
+        var jazmine = Person()
+        jazmine.name = "Jazmine"
+        jazmine.phone = "8134282970"
+        jazmine.food_list = food_jl
+        all_people.append(jazmine)
+        var all_receipts: [Receipt] = []
+        
+        //get shared_by counts
+        var occurred_food = ""
+        for person in all_people
+        {
+            var current : Person = person
+            for food_item in current.food_list
+            {
+                var current_name:String = food_item.name!
+                if occurred_food.rangeOfString(current_name) != nil{
+                        food_item.shared_by = food_item.shared_by! + 1
+                }
+                else{
+                        food_item.shared_by = 1
+                }
             }
-            else {
-                all_users = objects
+        }
+        for person in all_people
+        {
+            var first_line = "Hello " + person.name! + ", here's your receipt from FoodMate! \n"
+            var lines : [String] = []
+            lines.append(first_line)
+            var r = Receipt()
+            r.all_lines = lines
+            r.recipient = person.phone
+            for food in person.food_list
+            {
+                var food_price = food.price!
+                var food_shared = food.shared_by!
+                var cost = food_price / food_shared
+                var food_name = food.name!
+                r.add_line(food_name, price: cost)
             }
+            r.all_lines.append("Total: $" + "\(r.total)" + "\n")
+            all_receipts.append(r)
             
-        })
-        /*
-        all_receipts = []
-        for person in all_people:
-        first_line = "Hello " + person.nm + ", here's your receipt from FoodMate! \n"
-        lines = []
-        lines.append(first_line)
-        r = Receipt(person.pn, lines)
-        for item in person.fl:
-        r.add_line(item.nm, item.pr/item.sh)
-        all_receipts.append(r)
-*/
+        }
+            //twilio output
+            for r in all_receipts
+            {
+                var output = ""
+                print("send text to : " + r.recipient! + "\n")
+                for line in r.all_lines
+                {
+                    output = output + line
+                }
+                print(output)
+            }
+        
+        
     }
     /////////////////
     // New Item Stuff
