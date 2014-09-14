@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <EditText
-        android:id="@+id/signupemail"
+        android:id="@+id/loginemail"
         android:hint="Email"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
     </EditText>
 
     <EditText
-        android:id="@+id/signuppassword"
+        android:id="@+id/loginpassword"
         android:layout_width="250dp"
         android:hint="Password"
         android:layout_marginTop="20dp"
@@ -27,11 +27,11 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/signupbutton"
+        android:id="@+id/loginbutton"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Signup" />
+        android:text="Login" />
 
 </LinearLayout>
