@@ -9,7 +9,14 @@
 import UIKit
 
 class ManualItemViewController: UIViewController {
+    @IBOutlet weak var itemNameTextField: UITextField!
+    
+    @IBOutlet weak var itemPriceTextField: UITextField!
 
+    @IBOutlet weak var barCodeTextField: UITextField!
+    
+    @IBOutlet weak var daysToExpireTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,5 +49,16 @@ class ManualItemViewController: UIViewController {
     
     @IBAction func doneButtonClicked(sender: AnyObject) {
         // send Parse requests here and then reload the table
+        var newItem = PFObject(className: "Food_item")
+        newItem["name"] = self.itemNameTextField.text
+        newItem["price"] = (self.itemPriceTextField.text as NSString).floatValue
+        if (self.barCodeTextField.text != "") {
+            newItem["barcode"] = self.barCodeTextField.text
+        }
+        if (self.daysToExpireTextField.text != "") {
+            newItem["expiration"] = self.daysToExpireTextField.text.toInt()
+        }
+        newItem.saveInBackground()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
