@@ -10,6 +10,10 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    //currently hardcoded, needs to be global app variables:
+    var my_name = "jordan"
+    var my_objectID = "LYHZxx4KrL"
+    
     @IBOutlet weak var tableView: UITableView!
     var stringArray = ["foo", "bar", "baz"]
     var foodData:[AnyObject]! = []
@@ -68,12 +72,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell : HomeTableViewCell! = tableView.dequeueReusableCellWithIdentifier("Cell") as HomeTableViewCell
-        if(cell == nil) {
-            //cell = NSBundle.mainBundle().loadNibNamed("Cell", owner: self, options: nil)[0] as UITableViewCell;
-            cell = HomeTableViewCell()
-        }
-        
         //cell.foodLabel.text = foodData[indexPath.row].name
         //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
@@ -84,12 +82,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if error == nil {
                 //NSLog("%@", item)
                 cell.foodLabel.text = item["name"] as? String
-                //cell.priceLabel.text = item["price"] as? String
+                cell.priceLabel.text = item["price"] as? String
                 //cell.priceLabel.text = String(item["price"] as NSNumber / 100.0)
             } else {
                 //NSLog("%@", error)
             }
         }
+        
+        if(item["inStock"])
+        var cell : HomeTableViewCell! = tableView.dequeueReusableCellWithIdentifier("GreenCell") as HomeTableViewCell
+        if(cell == nil) {
+            //cell = NSBundle.mainBundle().loadNibNamed("Cell", owner: self, options: nil)[0] as UITableViewCell;
+            cell = HomeTableViewCell()
+        }
+
         
         return cell
     }
