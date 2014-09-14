@@ -53,6 +53,19 @@ public class MainActivity extends Activity
             startActivity(intent);
         }
 
+            try {
+                Intent venmoIntent = VenmoLibrary.openVenmoPayment("1965", "FoodMate", "robert.rouhani@gmail.com", ".01", "test", "charge");
+                startActivityForResult(venmoIntent, 1); //1 is the requestCode we are using for Venmo. Feel free to change this to another number.
+            }
+            catch (android.content.ActivityNotFoundException e) //Venmo native app not install on device, so let's instead open a mobile web version of Venmo in a WebView
+            {
+                Intent venmoIntent = new Intent(MainActivity.this, VenmoWebViewActivity.class);
+                String venmo_uri = VenmoLibrary.openVenmoPaymentInWebView("1965", "FoodMate", "robert.rouhani@gmail.com", ".01", "test", "charge");
+                venmoIntent.putExtra("url", venmo_uri);
+                startActivityForResult(venmoIntent, 1);
+            }
+
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();

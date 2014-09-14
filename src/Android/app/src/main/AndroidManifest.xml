@@ -24,8 +24,8 @@
             android:label="@string/title_activity_signup" >
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" >
+            android:name=".VenmoWebViewActivity"
+            android:label="@string/venmo_activity" >
         </activity>
     </application>
 
