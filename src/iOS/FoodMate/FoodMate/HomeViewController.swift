@@ -73,8 +73,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        //cell.foodLabel.text = foodData[indexPath.row].name
-        //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        var cell : HomeTableViewCell! = tableView.dequeueReusableCellWithIdentifier("GreenCell") as HomeTableViewCell
+        if(cell == nil) {
+            //cell = NSBundle.mainBundle().loadNibNamed("Cell", owner: self, options: nil)[0] as UITableViewCell;
+            cell = HomeTableViewCell()
+        }
         
         let objId = foodData[indexPath.row].objectId
         var query = PFQuery(className:"Food_item")
@@ -82,20 +85,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             (item: PFObject!, error: NSError!) -> Void in
             if error == nil {
                 cell.foodLabel.text = item["name"] as? String
-                cell.priceLabel.text = item["price"] as? String
-                //cell.priceLabel.text = String(item["price"] as NSNumber / 100.0)
-            } else {
-                //NSLog("%@", error)
+                cell.priceLabel.text = ("$" + String(format: "%.2f", item["price"].floatValue))
             }
         }
-        
-        if(item["inStock"])
-        var cell : HomeTableViewCell! = tableView.dequeueReusableCellWithIdentifier("GreenCell") as HomeTableViewCell
-        if(cell == nil) {
-            //cell = NSBundle.mainBundle().loadNibNamed("Cell", owner: self, options: nil)[0] as UITableViewCell;
-            cell = HomeTableViewCell()
-        }
-
         
         return cell
     }
