@@ -53,6 +53,8 @@ public class MainActivity extends Activity
             startActivity(intent);
         }
 
+
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
