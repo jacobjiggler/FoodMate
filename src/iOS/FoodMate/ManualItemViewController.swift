@@ -123,6 +123,20 @@ class ManualItemViewController: UIViewController {
     }
     
     @IBAction func addButtonClicked(sender: AnyObject) {
+//        var foobar = PFQuery(className: "_User")
+//        foobar.whereKey("username", equalTo: "jordan")
+//        foobar.findObjectsInBackgroundWithBlock({(objects:[AnyObject]!, NSError error) in
+//            if (error != nil) {
+//                NSLog("error " + error.localizedDescription)
+//            }
+//            else {
+//                print("################")
+//                print(objects)
+//            }
+//        })
+//        
+//        
+//        
         var codedObjId = PFQuery(className: "Group").getFirstObject()
         
         var query = PFQuery(className: "Food_item")
