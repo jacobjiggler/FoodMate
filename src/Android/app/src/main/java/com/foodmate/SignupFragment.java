@@ -15,8 +15,12 @@ import android.widget.TextView;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+
+import java.util.List;
 
 
 /**
@@ -82,11 +86,22 @@ public class SignupFragment extends Fragment {
         a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("FoodMate", "IN CLICK LISTENER");
+                ParseObject group = null;
+                try {
+                     List<ParseObject> groupQuery = new ParseQuery<ParseObject>("Group").whereEqualTo("objectId", "T0WP5gBwTF").find();
+                    if (groupQuery.size() > 0)
+                        group = groupQuery.get(0);
+                }
+                catch (ParseException e) {
+                    Log.d("FoodMate", e.getMessage());
+                }
+
                 ParseUser user = new ParseUser();
                 user.setUsername(email.getText().toString());
                 user.setEmail(email.getText().toString());
                 user.setPassword(password.getText().toString());
+                if (group != null)
+                    user.put("groupId", group);
 
 // other fields can be set just like with ParseObject
                 user.put("phone", "650-253-0000");
@@ -97,6 +112,7 @@ public class SignupFragment extends Fragment {
                             // Hooray! Let them use the app now.
                             getActivity().finish();
                         } else {
+                            Log.d("FoodMate", e.getMessage());
                             ParseUser.logInInBackground(email.getText().toString(), password.getText().toString(), new LogInCallback() {
                                 public void done(ParseUser user, ParseException e) {
                                     if (user != null) {
@@ -104,6 +120,7 @@ public class SignupFragment extends Fragment {
                                         getActivity().finish();
                                     } else {
                                         // Signup failed. Look at the ParseException to see what happened.
+
                                     }
                                 }
                             });

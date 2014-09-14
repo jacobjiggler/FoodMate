@@ -4,15 +4,24 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseRelation;
+import com.parse.ParseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -37,6 +46,8 @@ public class FoodItemDetailFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private FoodItemWrapper selectedItem;
+
+    private boolean inWishlist;
 
     /**
      * Use this factory method to create a new instance of
@@ -109,11 +120,59 @@ public class FoodItemDetailFragment extends Fragment {
             }
         });
 
-        Button wishListBtn = (Button)v.findViewById(R.id.food_detail_wishlist_button);
+        final Button wishListBtn = (Button)v.findViewById(R.id.food_detail_wishlist_button);
         wishListBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO do this
+                if (selectedItem == null)
+                    return;
+
+                Button btn = (Button)v;
+
+                if (inWishlist) {
+                    ParseUser user = ParseUser.getCurrentUser();
+                    ParseRelation<ParseObject> wishlist = user.getRelation("wishlist");
+                    wishlist.remove(selectedItem.getObj());
+                    user.saveInBackground();
+
+                    int num = selectedItem.getObj().getInt("shared_by");
+                    selectedItem.getObj().put("shared_by", num - 1);
+                    selectedItem.getObj().saveInBackground();
+
+                    Toast.makeText(getActivity(), "Removed from wishlist", Toast.LENGTH_LONG).show();
+                    inWishlist = false;
+                    btn.setText(getString(R.string.food_detail_add));
+                }
+                else {
+                    ParseUser user = ParseUser.getCurrentUser();
+                    ParseRelation<ParseObject> wishlist = user.getRelation("wishlist");
+                    wishlist.add(selectedItem.getObj());
+                    user.saveInBackground();
+
+                    selectedItem.getObj().increment("shared_by");
+                    selectedItem.getObj().saveInBackground();
+
+                    Toast.makeText(getActivity(), "Added to wishlist", Toast.LENGTH_LONG).show();
+                    inWishlist = true;
+                    btn.setText(getString(R.string.food_detail_remove));
+                }
+            }
+        });
+
+        ParseUser user = ParseUser.getCurrentUser();
+        ParseRelation<ParseObject> wishlist = user.getRelation("wishlist");
+        wishlist.getQuery().whereEqualTo("objectId", selectedItem.getObj().getObjectId()).findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if (e != null) {
+                    Log.d("FoodMate", e.getMessage());
+                    return;
+                }
+                if (parseObjects.size() == 0)
+                    return;
+
+                wishListBtn.setText(getString(R.string.food_detail_remove));
+                inWishlist = true;
             }
         });
 
