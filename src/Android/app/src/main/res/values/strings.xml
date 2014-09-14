@@ -20,6 +20,7 @@
     <string name="food_detail_last_purchased">Last Purchased</string>
     <string name="food_detail_expiration_date">Expiration Date</string>
     <string name="food_detail_barcode">Barcode Data</string>
+    <string name="shopping_list_split_cost">Split Cost</string>
     <string name="title_activity_signup">SignupActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="venmo_activity">VenmoActivity</string>

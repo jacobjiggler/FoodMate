@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:id="@+id/shopping_list" />
+    android:layout_height="fill_parent">
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/split_cost_shop_button"
+        android:text="@string/shopping_list_split_cost" />
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/shopping_list"
+        android:layout_alignParentEnd="false"
+        android:layout_above="@+id/split_cost" />
+</RelativeLayout>

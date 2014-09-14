@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.parse.FindCallback;
@@ -17,6 +18,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,39 +79,68 @@ public class ShoppingListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final ListView v = (ListView)inflater.inflate(R.layout.fragment_shopping_list, container, false);
+        View v = inflater.inflate(R.layout.fragment_shopping_list, container, false);
 
-        ParseQuery<ParseObject> existingShoppingListQuery = new ParseQuery<ParseObject>("Receipt");
-        existingShoppingListQuery.whereEqualTo("isShoppingList", true);
-        existingShoppingListQuery.findInBackground(new FindCallback<ParseObject>() {
+        generateShoppingList();
+
+        final Button split = (Button)v.findViewById(R.id.split_cost_shop_button);
+        split.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void done(List<ParseObject> parseObjects, ParseException e) {
-                if (e != null) {
-                    Log.d("FoodMate", e.getMessage());
-                    return;
-                }
-                if (parseObjects.size() == 0) {
-                    generateShoppingList();
-                    return;
+            public void onClick(View v) {
+                final ParseUser user = ParseUser.getCurrentUser();
+                ParseQuery<ParseObject> groupQuery = ParseQuery.getQuery("Group");
+                groupQuery.whereEqualTo("objectId", "T0WP5gBwTF");
+                ParseObject group = null;
+
+                try {
+                    group = groupQuery.find().get(0);
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
 
-                ParseObject shoppingList = parseObjects.get(0);
-                ParseRelation<ParseObject> itemsRelation = shoppingList.getRelation("foodItems");
-                itemsRelation.getQuery().findInBackground(new FindCallback<ParseObject>() {
+                ParseQuery<ParseUser> userQuery = new ParseQuery<ParseUser>("_User");
+                userQuery.whereEqualTo("groupId", group);
+                userQuery.findInBackground(new FindCallback<ParseUser>() {
                     @Override
-                    public void done(List<ParseObject> parseObjects, ParseException e) {
-                        if (e != null) {
-                            Log.d("FoodMate", e.getMessage());
-                            return;
+                    public void done(List<ParseUser> parseUsers, ParseException e) {
+                        ArrayList<Payee> payees = new ArrayList<Payee>();
+                        Log.d("FoodMate", "IN SPLIT COST");
+                        for (ParseUser u : parseUsers) {
+                            Log.d("FoodMate", "PARSING USER " + u.getUsername());
+
+                            float total = 0;
+                            ParseRelation<ParseObject> wishlist = u.getRelation("wishlist");
+                            ParseQuery<ParseObject> wishlistQuery = wishlist.getQuery();
+                            List<ParseObject> foodItems = null;
+                            try {
+                                foodItems = wishlistQuery.find();
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
+                            }
+
+                            if (foodItems == null)
+                                continue;
+
+                            for (ParseObject food : foodItems) {
+                                int sharedBy = food.getInt("shared_by");
+                                if (sharedBy == 0)
+                                    continue;
+
+                                Log.d("FoodMate", "ADDING VALUE FOR " + food.get("name"));
+                                total += food.getNumber("price").floatValue() / sharedBy;
+                            }
+
+                            if (total == 0 || u.getObjectId() == user.getObjectId())
+                                continue;
+
+                            //TODO Venmo ID?
+                            Payee p = new Payee(u.getUsername(), u.getEmail(), total);
+                            payees.add(p);
                         }
 
-                        List<FoodItemWrapper> convertedList = new ArrayList<FoodItemWrapper>();
-                        for (int i = 0; i < parseObjects.size(); i++) {
-                            convertedList.add(new FoodItemWrapper(parseObjects.get(i), true));
-                        }
-
-                        ArrayAdapter<FoodItemWrapper> arrayAdapter = new ArrayAdapter<FoodItemWrapper>(v.getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, convertedList);
-                        v.setAdapter(arrayAdapter);
+                        Log.d("FoodMate", "SETTING FRAGMENT");
+                        SplitCostFragment splitCostFragment = new SplitCostFragment(payees);
+                        getFragmentManager().beginTransaction().replace(R.id.container, splitCostFragment).commit();
                     }
                 });
             }
@@ -121,61 +152,56 @@ public class ShoppingListFragment extends Fragment {
     private void generateShoppingList()
     {
         ParseUser user = ParseUser.getCurrentUser();
-        ParseObject group = (ParseObject)user.get("groupId");
+        final ParseObject group = (ParseObject)user.get("groupId");
 
         final ParseObject receipt = new ParseObject("Receipt");
         receipt.put("groupId", group);
         receipt.put("isShoppingList", true);
 
-        try {
-            receipt.save();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        final ParseRelation<ParseObject> relation = receipt.getRelation("foodItems");
-
-        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Food_item");
-        query.whereEqualTo("groupId", group);
-        query.findInBackground(new FindCallback<ParseObject>() {
+        receipt.saveEventually(new SaveCallback() {
             @Override
-            public void done(List<ParseObject> parseObjects, ParseException e) {
-                for (ParseObject p : parseObjects) {
-                    Log.d("FoodMate", "Looking at: " + p.get("name"));
-                    if (p.getInt("shared_by") != 0) {
-                        Log.d("FoodMate", "ADDED!!!");
-                        relation.add(p);
-                    }
-                }
+            public void done(ParseException e) {
+                final ParseRelation<ParseObject> relation = receipt.getRelation("foodItems");
 
-                try {
-                    receipt.save();
-                } catch (ParseException e1) {
-                    e1.printStackTrace();
-                }
-
-                receipt.getRelation("foodItems").getQuery().findInBackground(new FindCallback<ParseObject>() {
+                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Food_item");
+                query.whereEqualTo("groupId", group);
+                query.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> parseObjects, ParseException e) {
-                        if (e != null) {
-                            Log.d("FoodMate", e.getMessage());
-                            return;
+                        for (ParseObject p : parseObjects) {
+                            if (p.getInt("shared_by") != 0) {
+                                relation.add(p);
+                            }
                         }
 
-                        List<FoodItemWrapper> convertedList = new ArrayList<FoodItemWrapper>();
-                        for (int i = 0; i < parseObjects.size(); i++) {
-                            convertedList.add(new FoodItemWrapper(parseObjects.get(i), true));
+                        try {
+                            receipt.save();
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
                         }
 
-                        ListView v = (ListView) getActivity().findViewById(R.id.shopping_list);
-                        ArrayAdapter<FoodItemWrapper> arrayAdapter = new ArrayAdapter<FoodItemWrapper>(v.getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, convertedList);
-                        v.setAdapter(arrayAdapter);
+                        receipt.getRelation("foodItems").getQuery().findInBackground(new FindCallback<ParseObject>() {
+                            @Override
+                            public void done(List<ParseObject> parseObjects, ParseException e) {
+                                if (e != null) {
+                                    Log.d("FoodMate", e.getMessage());
+                                    return;
+                                }
+
+                                List<FoodItemWrapper> convertedList = new ArrayList<FoodItemWrapper>();
+                                for (int i = 0; i < parseObjects.size(); i++) {
+                                    convertedList.add(new FoodItemWrapper(parseObjects.get(i), true));
+                                }
+
+                                ListView v = (ListView) getActivity().findViewById(R.id.shopping_list);
+                                ArrayAdapter<FoodItemWrapper> arrayAdapter = new ArrayAdapter<FoodItemWrapper>(v.getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, convertedList);
+                                v.setAdapter(arrayAdapter);
+                            }
+                        });
                     }
                 });
             }
         });
-
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event
