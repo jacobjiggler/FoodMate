@@ -15,24 +15,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var my_objectID = "LYHZxx4KrL"
     
     @IBOutlet weak var tableView: UITableView!
-    var stringArray = ["foo", "bar", "baz"]
+    
     var foodData:[AnyObject]! = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        var query : PFQuery = PFQuery(className: "Food_item")
-        query.findObjectsInBackgroundWithBlock({(objects:[AnyObject]!, NSError error) in
-            if (error != nil) {
-                NSLog("error " + error.localizedDescription)
-            }
-            else {
-//                NSLog("objects %@", objects as NSArray)
-//                self.foodData = NSArray(array:objects)
-                self.foodData = objects
-                
-                self.tableView.reloadData()
-            }
-        })
-
         // Do any additional setup after loading the view.
         
     }
@@ -40,6 +27,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        var query : PFQuery = PFQuery(className: "Food_item")
+        query.findObjectsInBackgroundWithBlock({(objects:[AnyObject]!, NSError error) in
+            if (error != nil) {
+                NSLog("error " + error.localizedDescription)
+            }
+            else {
+                self.foodData = objects
+                self.tableView.reloadData()
+            }
+        })
     }
     
 
@@ -65,7 +67,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) ->Int
     {
         //make sure you use the relevant array sizes
-        print("count is: \(foodData.count)")
         return foodData.count
 
     }
@@ -80,7 +81,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         query.getObjectInBackgroundWithId(objId) {
             (item: PFObject!, error: NSError!) -> Void in
             if error == nil {
-                //NSLog("%@", item)
                 cell.foodLabel.text = item["name"] as? String
                 cell.priceLabel.text = item["price"] as? String
                 //cell.priceLabel.text = String(item["price"] as NSNumber / 100.0)
