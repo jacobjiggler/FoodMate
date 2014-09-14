@@ -4,6 +4,7 @@ package com.foodmate;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,6 +22,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.parse.ParseUser;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -249,8 +252,10 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
-        if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+        if (item.getItemId() == R.id.action_logout) {
+            ParseUser.logOut();
+            Intent intent = new Intent(getActivity(), SignupActivity.class);
+            startActivity(intent);
             return true;
         }
 
