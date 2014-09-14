@@ -1,22 +1,37 @@
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/signup_header"
-        android:layout_alignParentLeft="false"
-        android:layout_marginLeft="0dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:autoText="false"
-        android:gravity="center_horizontal"
-        android:id="@+id/signup_header" />
+    <EditText
+        android:id="@+id/signupemail"
+        android:hint="Email"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:layout_gravity="center"
+        android:ems="10" >
 
-    </LinearLayout>
+        <requestFocus />
+    </EditText>
 
+    <EditText
+        android:id="@+id/signuppassword"
+        android:layout_width="250dp"
+        android:hint="Password"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/signupbutton"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Signup" />
+
+</LinearLayout>

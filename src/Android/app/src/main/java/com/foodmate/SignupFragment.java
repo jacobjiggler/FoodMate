@@ -1,12 +1,18 @@
 package com.foodmate;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -63,31 +69,49 @@ public class SignupFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        ParseUser user = new ParseUser();
-        user.setUsername("my name");
-        user.setPassword("my pass");
-        user.setEmail("email@example.com");
-
-// other fields can be set just like with ParseObject
-        user.put("phone", "650-555-0000");
-
-        user.signUpInBackground(new SignUpCallback() {
-            public void done(ParseException e) {
-                if (e == null) {
-                    // Hooray! Let them use the app now.
-                } else {
-                    // Sign up didn't succeed. Look at the ParseException
-                    // to figure out what went wrong
-                }
-            }
-        });
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_signup, container, false);
+        View v =  inflater.inflate(R.layout.fragment_signup, container, false);
+        Button a = (Button)v.findViewById(R.id.signupbutton);
+        final TextView email = (TextView)v.findViewById(R.id.signupemail);
+        final TextView password = (TextView)v.findViewById(R.id.signuppassword);
+
+        a.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseUser user = new ParseUser();
+                user.setEmail(email.getText().toString());
+                user.setPassword(password.getText().toString());
+
+// other fields can be set just like with ParseObject
+                user.put("phone", "650-253-0000");
+
+                user.signUpInBackground(new SignUpCallback() {
+                    public void done(ParseException e) {
+                        if (e == null) {
+                            // Hooray! Let them use the app now.
+                            getActivity().finish();
+                        } else {
+                            ParseUser.logInInBackground(email.getText().toString(), password.getText().toString(), new LogInCallback() {
+                                public void done(ParseUser user, ParseException e) {
+                                    if (user != null) {
+                                        // Hooray! The user is logged in.
+                                        getActivity().finish();
+                                    } else {
+                                        // Signup failed. Look at the ParseException to see what happened.
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+
+            }
+        });
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
