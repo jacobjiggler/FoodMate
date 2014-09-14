@@ -12,6 +12,9 @@
 		1752C1F419C416380058080E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1752C1F319C416380058080E /* Images.xcassets */; };
 		1752C1F719C416380058080E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1752C1F519C416380058080E /* LaunchScreen.xib */; };
 		1752C20319C416380058080E /* FoodMateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1752C20219C416380058080E /* FoodMateTests.swift */; };
+		175B18C219C5B55700C3B6BB /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175B18C119C5B55700C3B6BB /* MainTabBarViewController.swift */; };
+		175B18C419C5B6C100C3B6BB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175B18C319C5B6C100C3B6BB /* SettingsViewController.swift */; };
+		175B18C619C5C27800C3B6BB /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175B18C519C5C27800C3B6BB /* MainTabBar.swift */; };
 		17DFC57719C439A800C46F12 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFC57619C439A800C46F12 /* HomeViewController.swift */; };
 		17DFC57919C4494800C46F12 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFC57819C4494800C46F12 /* HomeTableViewCell.swift */; };
 		17DFC58519C4DFBE00C46F12 /* ManualItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFC58419C4DFBE00C46F12 /* ManualItemViewController.swift */; };
@@ -28,7 +31,12 @@
 		701C9AB719C4DDC900643676 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701C9AB619C4DDC900643676 /* Security.framework */; };
 		701C9AB919C4DDCF00643676 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701C9AB819C4DDCF00643676 /* StoreKit.framework */; };
 		701C9ABB19C4DDD900643676 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701C9ABA19C4DDD900643676 /* SystemConfiguration.framework */; };
-		701C9AC219C50D9300643676 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701C9AC119C50D9300643676 /* ShoppingListViewController.swift */; };
+		7075C69419C59EE10039F68F /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7075C69319C59EE10039F68F /* ShoppingListViewController.swift */; };
+		7075C69619C5A2960039F68F /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7075C69519C5A2960039F68F /* ShoppingListTableViewCell.swift */; };
+		7075C69819C5AF530039F68F /* libTwilioClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7075C69719C5AF530039F68F /* libTwilioClient.a */; };
+		7075C69B19C5B1010039F68F /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7075C69919C5B1010039F68F /* libcrypto.a */; };
+		7075C69C19C5B1010039F68F /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7075C69A19C5B1010039F68F /* libssl.a */; };
+		7075C69E19C5B12A0039F68F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7075C69D19C5B12A0039F68F /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +59,9 @@
 		1752C1FC19C416380058080E /* FoodMateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodMateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1752C20119C416380058080E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1752C20219C416380058080E /* FoodMateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMateTests.swift; sourceTree = "<group>"; };
+		175B18C119C5B55700C3B6BB /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		175B18C319C5B6C100C3B6BB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		175B18C519C5C27800C3B6BB /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		17DFC57619C439A800C46F12 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		17DFC57819C4494800C46F12 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		17DFC58419C4DFBE00C46F12 /* ManualItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManualItemViewController.swift; path = ../ManualItemViewController.swift; sourceTree = "<group>"; };
@@ -68,7 +79,12 @@
 		701C9AB819C4DDCF00643676 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		701C9ABA19C4DDD900643676 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		701C9ABC19C4DDF200643676 /* FoodMate-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoodMate-Bridging-Header.h"; sourceTree = "<group>"; };
-		701C9AC119C50D9300643676 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
+		7075C69319C59EE10039F68F /* ShoppingListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
+		7075C69519C5A2960039F68F /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
+		7075C69719C5AF530039F68F /* libTwilioClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTwilioClient.a; path = "../../../../Downloads/TwilioClient-1.1.5-ce0a13e/Libraries/libTwilioClient.a"; sourceTree = "<group>"; };
+		7075C69919C5B1010039F68F /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../../Downloads/TwilioClient-1.1.5-ce0a13e/Libraries/libcrypto.a"; sourceTree = "<group>"; };
+		7075C69A19C5B1010039F68F /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../../../Downloads/TwilioClient-1.1.5-ce0a13e/Libraries/libssl.a"; sourceTree = "<group>"; };
+		7075C69D19C5B12A0039F68F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +92,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7075C69E19C5B12A0039F68F /* AVFoundation.framework in Frameworks */,
+				7075C69B19C5B1010039F68F /* libcrypto.a in Frameworks */,
+				7075C69C19C5B1010039F68F /* libssl.a in Frameworks */,
+				7075C69819C5AF530039F68F /* libTwilioClient.a in Frameworks */,
 				701C9ABB19C4DDD900643676 /* SystemConfiguration.framework in Frameworks */,
 				701C9AB919C4DDCF00643676 /* StoreKit.framework in Frameworks */,
 				701C9AB719C4DDC900643676 /* Security.framework in Frameworks */,
@@ -104,6 +124,10 @@
 		1752C1DC19C416380058080E = {
 			isa = PBXGroup;
 			children = (
+				7075C69D19C5B12A0039F68F /* AVFoundation.framework */,
+				7075C69919C5B1010039F68F /* libcrypto.a */,
+				7075C69A19C5B1010039F68F /* libssl.a */,
+				7075C69719C5AF530039F68F /* libTwilioClient.a */,
 				701C9ABA19C4DDD900643676 /* SystemConfiguration.framework */,
 				701C9AB819C4DDCF00643676 /* StoreKit.framework */,
 				701C9AB619C4DDC900643676 /* Security.framework */,
@@ -135,11 +159,15 @@
 		1752C1E719C416380058080E /* FoodMate */ = {
 			isa = PBXGroup;
 			children = (
+				175B18C119C5B55700C3B6BB /* MainTabBarViewController.swift */,
+				175B18C519C5C27800C3B6BB /* MainTabBar.swift */,
 				17DFC58419C4DFBE00C46F12 /* ManualItemViewController.swift */,
 				17DFC58619C4E0C800C46F12 /* ScanItemViewController.swift */,
 				1752C1EA19C416380058080E /* AppDelegate.swift */,
 				1752C1F019C416380058080E /* Main.storyboard */,
-				701C9AC119C50D9300643676 /* ShoppingListViewController.swift */,
+				175B18C319C5B6C100C3B6BB /* SettingsViewController.swift */,
+				7075C69519C5A2960039F68F /* ShoppingListTableViewCell.swift */,
+				7075C69319C59EE10039F68F /* ShoppingListViewController.swift */,
 				17DFC57819C4494800C46F12 /* HomeTableViewCell.swift */,
 				17DFC57619C439A800C46F12 /* HomeViewController.swift */,
 				1752C1F319C416380058080E /* Images.xcassets */,
@@ -223,10 +251,11 @@
 				TargetAttributes = {
 					1752C1E419C416380058080E = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 2S3D8J8M3T;
+						DevelopmentTeam = K3Y68R56RX;
 					};
 					1752C1FB19C416380058080E = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = K3Y68R56RX;
 						TestTargetID = 1752C1E419C416380058080E;
 					};
 				};
@@ -276,11 +305,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				17DFC57919C4494800C46F12 /* HomeTableViewCell.swift in Sources */,
+				175B18C219C5B55700C3B6BB /* MainTabBarViewController.swift in Sources */,
 				17DFC58519C4DFBE00C46F12 /* ManualItemViewController.swift in Sources */,
-				701C9AC219C50D9300643676 /* ShoppingListViewController.swift in Sources */,
+				7075C69419C59EE10039F68F /* ShoppingListViewController.swift in Sources */,
+				7075C69619C5A2960039F68F /* ShoppingListTableViewCell.swift in Sources */,
 				17DFC58719C4E0C800C46F12 /* ScanItemViewController.swift in Sources */,
 				1752C1EB19C416380058080E /* AppDelegate.swift in Sources */,
 				17DFC57719C439A800C46F12 /* HomeViewController.swift in Sources */,
+				175B18C619C5C27800C3B6BB /* MainTabBar.swift in Sources */,
+				175B18C419C5B6C100C3B6BB /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +446,10 @@
 				INFOPLIST_FILE = FoodMate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/PennApps/Downloads/TwilioClient-1.1.5-ce0a13e/Libraries",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FoodMate-Bridging-Header.h";
@@ -434,6 +471,10 @@
 				INFOPLIST_FILE = FoodMate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/PennApps/Downloads/TwilioClient-1.1.5-ce0a13e/Libraries",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FoodMate-Bridging-Header.h";
