@@ -1,6 +1,7 @@
 package com.foodmate;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -91,8 +93,18 @@ public class SignupFragment extends Fragment {
                     public void done(ParseException e) {
                         if (e == null) {
                             // Hooray! Let them use the app now.
+                            getActivity().finish();
                         } else {
-                            Log.d("FoodMate", "Bad Login");
+                            ParseUser.logInInBackground(email.getText().toString(), password.getText().toString(), new LogInCallback() {
+                                public void done(ParseUser user, ParseException e) {
+                                    if (user != null) {
+                                        // Hooray! The user is logged in.
+                                        getActivity().finish();
+                                    } else {
+                                        // Signup failed. Look at the ParseException to see what happened.
+                                    }
+                                }
+                            });
                         }
                     }
                 });
