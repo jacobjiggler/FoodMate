@@ -84,14 +84,18 @@ public class MainActivity extends Activity
                 break;
             case 3:
                 mTitle = getString(R.string.title_pantry);
-                PantryFragment frag = new PantryFragment();
-                getFragmentManager().beginTransaction().replace(R.id.container, frag).commit();
+                PantryFragment pantryFrag = new PantryFragment();
+                getFragmentManager().beginTransaction().replace(R.id.container, pantryFrag).commit();
                 break;
             case 4:
                 mTitle = getString(R.string.title_wishlist);
+                WishlistFragment wishFrag = new WishlistFragment();
+                getFragmentManager().beginTransaction().replace(R.id.container, wishFrag).commit();
                 break;
             case 5:
                 mTitle = getString(R.string.title_shoppinglist);
+                ShoppingListFragment shopFrag = new ShoppingListFragment();
+                getFragmentManager().beginTransaction().replace(R.id.container, shopFrag).commit();
                 break;
         }
     }

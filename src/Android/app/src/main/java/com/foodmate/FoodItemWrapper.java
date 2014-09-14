@@ -7,6 +7,7 @@ import com.parse.ParseObject;
  */
 public class FoodItemWrapper {
     private ParseObject obj;
+    private boolean forShopping;
 
     public FoodItemWrapper(ParseObject obj) {
         if (!obj.getClassName().equals("Food_item"))
@@ -15,12 +16,23 @@ public class FoodItemWrapper {
         this.obj = obj;
     }
 
+    public FoodItemWrapper(ParseObject obj, boolean forShopping) {
+        this(obj);
+        this.forShopping = forShopping;
+    }
+
     public ParseObject getObj() {
         return obj;
     }
 
     @Override
     public String toString() {
-        return (String)obj.get("name");
+        if (!forShopping) {
+            return (String) obj.get("name");
+        }
+        else {
+            int num = obj.getInt("shared_by");
+            return ((String)obj.get("name")).concat(" x" + Integer.toString(num));
+        }
     }
 }
