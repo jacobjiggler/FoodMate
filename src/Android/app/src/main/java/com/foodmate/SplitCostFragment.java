@@ -1,6 +1,8 @@
 package com.foodmate;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -8,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -104,5 +108,58 @@ public class SplitCostFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public class SplitPayAdapter extends ArrayAdapter<Payee> {
+        private final Context context;
+        private final ArrayList<Payee> itemsArrayList;
+
+        public SplitPayAdapter(Context context, ArrayList<Payee> itemsArrayList) {
+
+            super(context, R.layout.split_cost_row, itemsArrayList);
+
+            this.context = context;
+            this.itemsArrayList = itemsArrayList;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            // 1. Create inflater
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            // 2. Get rowView from inflater
+            View rowView = inflater.inflate(R.layout.split_cost_row, parent, false);
+
+            // 3. Get the two text view from the rowView
+            TextView labelView = (TextView) rowView.findViewById(R.id.split_cost_label);
+            Button buttonView = (Button) rowView.findViewById(R.id.split_cost_button);
+
+            // 4. Set the text for textView
+            final Payee p = itemsArrayList.get(position);
+            labelView.setText(p.getName() + " - $" + p.getAmount());
+            buttonView.setText("Pay");
+            buttonView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Intent venmoIntent = VenmoLibrary.openVenmoPayment("1965", "FoodMate", p.getId(), p.getAmount().toString(), "test", "charge");
+                        startActivityForResult(venmoIntent, 1); //1 is the requestCode we are using for Venmo. Feel free to change this to another number.
+                    }
+                    catch (android.content.ActivityNotFoundException e) //Venmo native app not install on device, so let's instead open a mobile web version of Venmo in a WebView
+                    {
+                        Intent venmoIntent = new Intent(SplitCostFragment.this.getActivity(), VenmoWebViewActivity.class);
+                        String venmo_uri = VenmoLibrary.openVenmoPaymentInWebView("1965", "FoodMate", p.getId(), p.getAmount().toString(), "test", "charge");
+                        venmoIntent.putExtra("url", venmo_uri);
+                        startActivityForResult(venmoIntent, 1);
+                    }
+
+                }
+            });
+
+            // 5. retrn rowView
+            return rowView;
+        }
     }
 }
